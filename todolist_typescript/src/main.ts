@@ -1,24 +1,24 @@
-import './style.css'
-import typescriptLogo from './typescript.svg'
-import viteLogo from '/vite.svg'
-import { setupCounter } from './counter.ts'
+import "./style.css"
 
-document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
-  <div>
-    <a href="https://vitejs.dev" target="_blank">
-      <img src="${viteLogo}" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://www.typescriptlang.org/" target="_blank">
-      <img src="${typescriptLogo}" class="logo vanilla" alt="TypeScript logo" />
-    </a>
-    <h1>Vite + TypeScript</h1>
-    <div class="card">
-      <button id="counter" type="button"></button>
-    </div>
-    <p class="read-the-docs">
-      Click on the Vite and TypeScript logos to learn more
-    </p>
-  </div>
-`
+const form = document.querySelector<HTMLFormElement>("#new-todo-form")! //* if we give "!" it will throw us the error if this form element it will not find on the page.
+const input = document.querySelector<HTMLInputElement>("#todo-input")!
 
-setupCounter(document.querySelector<HTMLButtonElement>('#counter')!)
+const todo = []
+
+form?.addEventListener("submit", e =>{
+    const todoName = input.value
+    if(todoName === "") return
+
+    const newTodo = {
+        id:crypto.randomUUID(),
+        name: todoName,
+        complete: false
+    }
+
+    todo.push(newTodo)
+    input.value = ""
+})
+
+function renderNewTodo(todo){
+
+}
